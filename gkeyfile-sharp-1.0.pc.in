@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+Libraries=${libdir}/mono/gkeyfile-sharp-1.0/gkeyfile-sharp.dll
+
+Name: GKeyFile#
+Description: GKeyFile# - A GKeyFile mono binding
+Version: @VERSION@
+Requires: glib-sharp-2.0
+Libs: -r:${Libraries}

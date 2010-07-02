@@ -1,0 +1,68 @@
+AC_INIT(gkeyfile-sharp, 0.1)
+AC_CANONICAL_SYSTEM
+AM_INIT_AUTOMAKE(gkeyfile-sharp-1.0, 0.1)
+AM_MAINTAINER_MODE
+
+API_VERSION=1.0.0.0
+AC_SUBST(API_VERSION)
+
+MONO_REQUIRED_VERSION=2.0
+
+AC_MSG_CHECKING([whether we're compiling from bzr])
+if test -f "$srcdir/.bzr" ; then
+	from_bzr=yes
+else
+	from_bzr=no
+fi
+
+AC_MSG_RESULT($from_bzr)
+
+AC_SUBST(PATH)
+AC_SUBST(LD_LIBRARY_PATH)
+
+dnl Find pkg-config
+AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
+if test "x$PKG_CONFIG" = "xno"; then
+        AC_MSG_ERROR([You need to install pkg-config])
+fi
+
+GLIB_REQUIRED_VERSION=2.6
+GLIB_SHARP_REQUIRED_VERSION=2.12.9
+MONO_REQUIRED_VERSION=2.0
+
+PKG_CHECK_MODULES(GLIB_DEPENDENCY, glib-2.0 >= $GLIB_REQUIRED_VERSION, has_glib=true, has_glib=false)
+PKG_CHECK_MODULES(MONO_DEPENDENCY, mono >= $MONO_REQUIRED_VERSION, has_mono=true, has_mono=false)
+PKG_CHECK_MODULES(GLIB_SHARP, glib-sharp-2.0 >= $GLIB_SHARP_REQUIRED_VERSION)
+AC_SUBST(GLIB_SHARP_LIBS)
+AC_SUBST(GLIB_SHARP_CFLAGS)
+
+GENERATED_SOURCES=generated/*.cs
+AC_PATH_PROG(RUNTIME, mono, no)
+AC_PATH_PROG(CSC, gmcs, no)
+LIB_PREFIX=.so
+LIB_SUFFIX=
+
+AC_SUBST(GENERATED_SOURCES)
+AC_SUBST(LIB_PREFIX)
+AC_SUBST(LIB_SUFFIX)
+
+AC_SUBST(GLIB_DEPENDENCY_CFLAGS)
+AC_SUBST(GLIB_DEPENDENCY_LIBS)
+
+dnl Find GAPI
+PKG_CHECK_MODULES(GAPI, gapi-2.0 >= 1.9.0)
+
+AC_PATH_PROG(GACUTIL, gacutil, no)
+if test "x$GACUTIL" = "xno" ; then
+        AC_MSG_ERROR([No gacutil tool found])
+fi
+
+AC_SUBST(GACUTIL)
+
+AC_OUTPUT([
+Makefile
+GKeyFile/gkeyfile-sharp.dll.config
+GKeyFile/Makefile
+GKeyFile/AssemblyInfo.cs
+gkeyfile-sharp-1.0.pc
+])
