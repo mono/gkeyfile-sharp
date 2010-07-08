@@ -8,13 +8,16 @@ ASSEMBLY= $(ASSEMBLY_NAME).dll
 CODEGEN=gapi2-codegen
 FIXUP=gapi2-fixup
 
+GENERATED_SOURCEDIR = generated
+GENERATED_SOURCES = $(GENERATED_SOURCEDIR)/*
+
 sources = AssemblyInfo.cs
 
 build_sources = $(addprefix $(srcdir)/, $(sources))
 
 customs = GKeyFile.custom
 
-CLEANFILES = gkeyfile-sharp.dll generated-stamp generated/*.cs $(API) gkeyfile-sharp.snk
+CLEANFILES = gkeyfile-sharp.dll generated/*.cs $(API) gkeyfile-sharp.snk
 
 DISTCLEANFILES= AssemblyInfo.cs
 
@@ -23,19 +26,18 @@ noinst_DATA = gkeyfile-sharp.dll
 moduledir = $(libdir)/mono/gkeyfile-sharp-1.0/
 module_SCRIPTS = gkeyfile-sharp.dll.config
 
-all: generated-stamp gkeyfile-sharp.dll
+all: gkeyfile-sharp.dll
 
 $(API): $(srcdir)/$(RAW_API) $(srcdir)/$(METADATA)
 	cp $(srcdir)/$(RAW_API) $(API)
 	chmod u+w $(API)
-	$(FIXUP) --api=$(srcdir)/$(API) --metadata=$(srcdir)/$(METADATA)
+	$(FIXUP) --api=$(API) --metadata=$(srcdir)/$(METADATA)
 
-generated-stamp: $(API)
-	 $(CODEGEN) --generate $(srcdir)/$(API) $(GLIB_SHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --assembly-name=gkeyfile-sharp && touch generated-stamp
+$(GENERATED_SOURCES): $(API)
+	 $(CODEGEN) --generate $(API) $(GLIB_SHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --assembly-name=gkeyfile-sharp
 
-gkeyfile-sharp.dll: $(build_sources) generated-stamp
-	$(CSC) -keyfile:$(top_srcdir)/gkeyfile-sharp.snk -out:gkeyfile-sharp.dll -unsafe -target:library $(GLIB_SHARP_LIBS) \
-	$(build_sources) $(GENERATED_SOURCES)
+gkeyfile-sharp.dll: AssemblyInfo.cs $(GENERATED_SOURCES)
+	$(CSC) -keyfile:$(top_srcdir)/gkeyfile-sharp.snk -out:$@ -unsafe -target:library $(GLIB_SHARP_LIBS) $^
 
 install-data-local:
 	echo "$(GACUTIL) /i $(ASSEMBLY) /f /package gkeyfile-sharp-1.0 /root $(DESTDIR)$(libdir)";  \
