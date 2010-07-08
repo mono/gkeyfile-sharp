@@ -24,13 +24,13 @@ module_SCRIPTS = gkeyfile-sharp.dll.config
 
 all: gkeyfile-sharp.dll
 
-$(API): $(srcdir)/$(RAW_API) $(srcdir)/$(METADATA)
-	cp $(srcdir)/$(RAW_API) $(API)
-	chmod u+w $(API)
-	$(FIXUP) --api=$(API) --metadata=$(srcdir)/$(METADATA)
+$(API): $(RAW_API) $(METADATA)
+	cp $< $@
+	chmod u+w $@
+	$(FIXUP) --api=$@ --metadata=$(lastword $^)
 
 $(GENERATED_SRCS): $(API)
-	 $(CODEGEN) --generate $(API) $(GLIB_SHARP_CFLAGS) --outdir=$(GENERATED_SRCDIR) --customdir=$(srcdir) --assembly-name=gkeyfile-sharp
+	 $(CODEGEN) --generate $< $(GLIB_SHARP_CFLAGS) --outdir=$(GENERATED_SRCDIR) --customdir=$(srcdir) --assembly-name=gkeyfile-sharp
 
 gkeyfile-sharp.dll: AssemblyInfo.cs $(GENERATED_SRCS)
 	$(CSC) -keyfile:$(top_srcdir)/gkeyfile-sharp.snk -out:$@ -unsafe -target:library $(GLIB_SHARP_LIBS) $^
