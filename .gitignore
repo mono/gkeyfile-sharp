@@ -1,5 +1,4 @@
 GKeyFile/AssemblyInfo.cs
-GKeyFile/generated-stamp
 GKeyFile/generated/*.cs
 GKeyFile/gkeyfile-api.xml
 *.dll
