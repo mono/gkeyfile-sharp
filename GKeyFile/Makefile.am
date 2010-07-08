@@ -11,10 +11,6 @@ FIXUP=gapi2-fixup
 GENERATED_SRCDIR = generated
 GENERATED_SRCS = $(GENERATED_SRCDIR)/*.cs
 
-sources = AssemblyInfo.cs
-
-build_sources = $(addprefix $(srcdir)/, $(sources))
-
 customs = GKeyFile.custom
 
 CLEANFILES = gkeyfile-sharp.dll $(GENERATED_SRCS) $(API) gkeyfile-sharp.snk
