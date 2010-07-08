@@ -9,7 +9,7 @@ CODEGEN=gapi2-codegen
 FIXUP=gapi2-fixup
 
 GENERATED_SOURCEDIR = generated
-GENERATED_SOURCES = $(GENERATED_SOURCEDIR)/*
+GENERATED_SOURCES = $(GENERATED_SOURCEDIR)/*.cs
 
 sources = AssemblyInfo.cs
 
@@ -17,7 +17,7 @@ build_sources = $(addprefix $(srcdir)/, $(sources))
 
 customs = GKeyFile.custom
 
-CLEANFILES = gkeyfile-sharp.dll generated/*.cs $(API) gkeyfile-sharp.snk
+CLEANFILES = gkeyfile-sharp.dll $(GENERATED_SOURCES) $(API) gkeyfile-sharp.snk
 
 DISTCLEANFILES= AssemblyInfo.cs
 
@@ -34,7 +34,7 @@ $(API): $(srcdir)/$(RAW_API) $(srcdir)/$(METADATA)
 	$(FIXUP) --api=$(API) --metadata=$(srcdir)/$(METADATA)
 
 $(GENERATED_SOURCES): $(API)
-	 $(CODEGEN) --generate $(API) $(GLIB_SHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --assembly-name=gkeyfile-sharp
+	 $(CODEGEN) --generate $(API) $(GLIB_SHARP_CFLAGS) --outdir=$(GENERATED_SOURCEDIR) --customdir=$(srcdir) --assembly-name=gkeyfile-sharp
 
 gkeyfile-sharp.dll: AssemblyInfo.cs $(GENERATED_SOURCES)
 	$(CSC) -keyfile:$(top_srcdir)/gkeyfile-sharp.snk -out:$@ -unsafe -target:library $(GLIB_SHARP_LIBS) $^
