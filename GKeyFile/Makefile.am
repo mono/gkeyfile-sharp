@@ -8,9 +8,9 @@ ASSEMBLY= $(ASSEMBLY_NAME).dll
 CODEGEN=gapi2-codegen
 FIXUP=gapi2-fixup
 
-sources = 
+sources = AssemblyInfo.cs
 
-build_sources = $(addprefix $(srcdir)/, $(sources)) AssemblyInfo.cs
+build_sources = $(addprefix $(srcdir)/, $(sources))
 
 customs = GKeyFile.custom
 
@@ -33,11 +33,8 @@ $(API): $(srcdir)/$(RAW_API) $(srcdir)/$(METADATA)
 generated-stamp: $(API)
 	 $(CODEGEN) --generate $(srcdir)/$(API) $(GLIB_SHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --assembly-name=gkeyfile-sharp && touch generated-stamp
 
-gkeyfile-sharp.snk: $(top_srcdir)/gkeyfile-sharp.snk
-	cp $(top_srcdir)/gkeyfile-sharp.snk .
-
-gkeyfile-sharp.dll: $(build_sources) generated-stamp gkeyfile-sharp.snk
-	$(CSC) -out:gkeyfile-sharp.dll -unsafe -target:library $(GLIB_SHARP_LIBS) \
+gkeyfile-sharp.dll: $(build_sources) generated-stamp
+	$(CSC) -keyfile:$(top_srcdir)/gkeyfile-sharp.snk -out:gkeyfile-sharp.dll -unsafe -target:library $(GLIB_SHARP_LIBS) \
 	$(build_sources) $(GENERATED_SOURCES)
 
 install-data-local:
