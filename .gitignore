@@ -1,0 +1,17 @@
+GKeyFile/AssemblyInfo.cs
+GKeyFile/generated-stamp
+GKeyFile/generated/*.cs
+GKeyFile/gkeyfile-api.xml
+*.dll
+GKeyFile/gkeyfile-sharp.dll.config
+GKeyFile/gkeyfile-sharp.snk
+INSTALL
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.*
+configure
+gkeyfile-sharp-1.0.pc
+install-sh
+missing
