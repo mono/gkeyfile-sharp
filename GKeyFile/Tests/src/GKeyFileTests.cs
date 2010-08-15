@@ -42,22 +42,7 @@ public class GKeyFileTests
 	{
 		test_file_name = new [] {Environment.CurrentDirectory, "..", "..", "src", TEST_FILE_NAME}.Aggregate (Path.Combine);
 		test_keyfile = new GKeyFile (test_file_name);
-	}
-
-	/*
-	[Test]
-	public void SetSeperator ()
-	{
-		GKeyFile testKeyfile = new GKeyFile (TEST_FILE_NAME);
-
-		testKeyfile.
-		string[] testSeps = new string[] {";", ":"};
-		foreach (string sep in testSeps) {
-			testKeyfile.ListSeparator = sep;
-			Assert.AreEqual (sep, testKeyfile.ListSeparator);
-		}
-	}
-	*/
+	}	
 
 	[Test]
 	public void GetString ()
