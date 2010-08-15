@@ -1,0 +1,18 @@
+# This file is part of the GKeyFile-sharp test suite.
+# (C) 2010 Alex Launi
+# This file is a bs gkeyfile for unit testing purposes.
+
+[Group1]
+String=astring
+StringWithSpaces=a string with spaces
+StringWithEscaping=a\tstring\nwith escaping
+TrueBool=true
+FalseBool=false
+Integer=256
+NegativeInt=-1024
+Double=11.28
+NegativeDouble=-28.11
+StringList=one;two;three;four
+BoolList=true;false;false;true
+IntegerList=0;1;2;04;-5
+DoubleList=10;10.3;46.3;-0.8
