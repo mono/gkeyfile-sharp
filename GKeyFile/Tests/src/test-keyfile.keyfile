@@ -16,3 +16,4 @@ StringList=one;two;three;four
 BoolList=true;false;false;true
 IntegerList=0;1;2;04;-5
 DoubleList=10;10.3;46.3;-0.8
+NonSemicolonStringList=one one:two:threee:for

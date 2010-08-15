@@ -34,13 +34,14 @@ public class GKeyFileTests
 {
 	const string TEST_FILE_NAME = "test-keyfile.keyfile";
 
+	string test_file_name;
 	GKeyFile test_keyfile;
 
 	[SetUp]
 	public void Init ()
 	{
-		string testFile = new [] {Environment.CurrentDirectory, "..", "..", "src", TEST_FILE_NAME}.Aggregate (Path.Combine);
-		test_keyfile = new GKeyFile (testFile);
+		test_file_name = new [] {Environment.CurrentDirectory, "..", "..", "src", TEST_FILE_NAME}.Aggregate (Path.Combine);
+		test_keyfile = new GKeyFile (test_file_name);
 	}
 
 	/*
@@ -117,5 +118,15 @@ public class GKeyFileTests
 		double [] expected = new double [] { 10, 10.3, 46.3, -0.8 };
 
 		CollectionAssert.AreEqual (expected, test_keyfile.GetDoubleList ("Group1", "DoubleList"));
+	}
+
+	[Test]
+	public void GetNonstandardSeperatorStringList ()
+	{
+		GKeyFile keyFile = new GKeyFile (test_file_name);
+		string [] expected = new string [] { "one one", "two", "threee", "for" };
+		keyFile.ListSeparator = ":";
+
+		CollectionAssert.AreEqual (expected, keyFile.GetStringList ("Group1", "NonSemicolonStringList"));
 	}
 }
