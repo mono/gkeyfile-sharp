@@ -110,7 +110,7 @@ public class GKeyFileTests
 	{
 		GKeyFile keyFile = new GKeyFile (test_file_name);
 		string [] expected = new string [] { "one one", "two", "threee", "for" };
-		keyFile.ListSeparator = ":";
+		keyFile.ListSeparator = ':';
 
 		CollectionAssert.AreEqual (expected, keyFile.GetStringList ("Group1", "NonSemicolonStringList"));
 	}

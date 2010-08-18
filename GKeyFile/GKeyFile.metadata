@@ -15,6 +15,7 @@
   <attr path="/api/namespace/struct[@cname='GKeyFile']/method[@cname='g_key_file_get_boolean_list']" name="hidden">1</attr> 
   <attr path="/api/namespace/struct[@cname='GKeyFile']/method[@cname='g_key_file_get_integer_list']" name="hidden">1</attr> 
   <attr path="/api/namespace/struct[@cname='GKeyFile']/method[@cname='g_key_file_get_double_list']" name="hidden">1</attr> 
+  <attr path="/api/namespace/struct[@cname='GKeyFile']/method[@cname='g_key_file_set_list_separator']" name="hidden">1</attr> 
 
   <attr path="/api/namespace/struct[@cname='GKeyFile']/method[@cname='g_key_file_load_from_dirs']/parameters/parameter[@name='search_dirs']" name="type">GStrv</attr>
 

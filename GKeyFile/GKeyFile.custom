@@ -125,3 +125,12 @@
 		GLib.Marshaller.Free (raw_ret);
 		return ret;
 	}
+	
+	[DllImport("libglib-2.0.dll")]
+	static extern void g_key_file_set_list_separator(IntPtr raw, byte separator);
+
+	public char ListSeparator { 
+		set {
+			g_key_file_set_list_separator(Handle, (byte) value);
+		}
+	}
