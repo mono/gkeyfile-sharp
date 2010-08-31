@@ -1,8 +1,8 @@
 SUBDIRS = GKeyFile
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gkeyfile-sharp-1.0.pc
+pkgconfig_DATA = gkeyfile-sharp.pc
 
-EXTRA_DIST = gkeyfile-sharp-1.0.pc LICENSE.LGPL gkeyfile-sharp.snk
+EXTRA_DIST = gkeyfile-sharp.pc LICENSE.LGPL gkeyfile-sharp.snk
 
-DISTCLEANFILES = gkeyfile-sharp-1.0.pc
+DISTCLEANFILES = gkeyfile-sharp.pc

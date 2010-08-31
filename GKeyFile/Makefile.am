@@ -19,7 +19,7 @@ DISTCLEANFILES= AssemblyInfo.cs
 
 noinst_DATA = gkeyfile-sharp.dll
 
-moduledir = $(libdir)/mono/gkeyfile-sharp-1.0/
+moduledir = $(libdir)/mono/gkeyfile-sharp/
 module_SCRIPTS = gkeyfile-sharp.dll.config
 
 all: gkeyfile-sharp.dll
@@ -36,11 +36,11 @@ gkeyfile-sharp.dll: AssemblyInfo.cs $(GENERATED_SRCS)
 	$(CSC) -keyfile:$(top_srcdir)/gkeyfile-sharp.snk -out:$@ -unsafe -target:library $(GLIB_SHARP_LIBS) $^
 
 install-data-local:
-	echo "$(GACUTIL) /i $(ASSEMBLY) /f /package gkeyfile-sharp-1.0 /root $(DESTDIR)$(libdir)";  \
-        $(GACUTIL) /i $(ASSEMBLY) /f /package gkeyfile-sharp-1.0 /root $(DESTDIR)$(libdir) || exit 1;
+	echo "$(GACUTIL) /i $(ASSEMBLY) /f /package gkeyfile-sharp /root $(DESTDIR)$(libdir)";  \
+        $(GACUTIL) /i $(ASSEMBLY) /f /package gkeyfile-sharp /root $(DESTDIR)$(libdir) || exit 1;
 
 uninstall-local:
-	echo "$(GACUTIL) /u $(ASSEMBLY_NAME) /package gkeyfile-sharp-2.0 /root $(DESTDIR)$(libdir)"; \
-        $(GACUTIL) /u $(ASSEMBLY_NAME) /package gkeyfile-sharp-1.0 /root $(DESTDIR)$(libdir) || exit 1;
+	echo "$(GACUTIL) /u $(ASSEMBLY_NAME) /package gkeyfile-sharp /root $(DESTDIR)$(libdir)"; \
+        $(GACUTIL) /u $(ASSEMBLY_NAME) /package gkeyfile-sharp /root $(DESTDIR)$(libdir) || exit 1;
 
 EXTRA_DIST = $(API) $(RAW_API) $(sources) $(customs) $(METADATA) gkeyfile-sharp.dll.config.in
