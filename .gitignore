@@ -11,6 +11,6 @@ aclocal.m4
 autom4te.cache/
 config.*
 configure
-gkeyfile-sharp-1.0.pc
+gkeyfile-sharp.pc
 install-sh
 missing
