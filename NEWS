@@ -1,0 +1,7 @@
+GKeyFile#
+A mono binding to GKeyfile.
+
+=============
+Version 0.1
+=============
+Initial binding of GKeyfile.
