@@ -6,7 +6,7 @@
         Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
 
 -->
-  <namespace name="KeyFile" library="libglib-2.0.dll">
+  <namespace name="KeyFile" library="libglib-2.0-0.dll">
     <enum name="Error" cname="GKeyFileError" type="enum">
       <member cname="G_KEY_FILE_ERROR_UNKNOWN_ENCODING" name="UnknownEncoding" />
       <member cname="G_KEY_FILE_ERROR_PARSE" name="Parse" />

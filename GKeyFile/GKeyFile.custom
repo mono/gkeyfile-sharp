@@ -66,7 +66,7 @@
 		return GetStringList (group_name, key, out length);
 	}
 
-	[DllImport("libglib-2.0.dll")]
+	[DllImport("libglib-2.0-0.dll")]
 	static extern unsafe IntPtr g_key_file_get_boolean_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
 
 	public unsafe bool[] GetBooleanList(string group_name, string key) {
@@ -88,7 +88,7 @@
 		return ret;
 	}
 
-	[DllImport("libglib-2.0.dll")]
+	[DllImport("libglib-2.0-0.dll")]
 	static extern unsafe IntPtr g_key_file_get_integer_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
 
 	public unsafe int[] GetIntegerList(string group_name, string key) {
@@ -107,7 +107,7 @@
 		return ret;
 	}
 
-	[DllImport("libglib-2.0.dll")]
+	[DllImport("libglib-2.0-0.dll")]
 	static extern unsafe IntPtr g_key_file_get_double_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
 
 	public unsafe double[] GetDoubleList(string group_name, string key) {
@@ -126,7 +126,7 @@
 		return ret;
 	}
 	
-	[DllImport("libglib-2.0.dll")]
+	[DllImport("libglib-2.0-0.dll")]
 	static extern void g_key_file_set_list_separator(IntPtr raw, byte separator);
 
 	public char ListSeparator { 
