@@ -3,6 +3,9 @@ AC_CANONICAL_SYSTEM
 AM_INIT_AUTOMAKE(gkeyfile-sharp, 0.2)
 AM_MAINTAINER_MODE
 
+ASSEMBLY_NAME="$PACKAGE"
+ASSEMBLY_VERSION="$VERSION"
+
 API_VERSION=1.0.0.0
 AC_SUBST(API_VERSION)
 
@@ -56,6 +59,9 @@ if test "x$GACUTIL" = "xno" ; then
 fi
 
 AC_SUBST(GACUTIL)
+
+GACUTIL_FLAGS='/package $(ASSEMBLY_NAME) /gacdir $(prefix)/lib /root $(DESTDIR)$(prefix)/lib'
+AC_SUBST(GACUTIL_FLAGS)
 
 AC_OUTPUT([
 Makefile
